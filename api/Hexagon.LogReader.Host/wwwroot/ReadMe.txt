@@ -1,0 +1,1 @@
+If the SPA needs to be served from the same host as the API, copy the SPA output here

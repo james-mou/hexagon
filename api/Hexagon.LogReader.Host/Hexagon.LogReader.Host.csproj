@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hexagon.LogReader.RepositoryInterface\Hexagon.LogReader.RepositoryInterface.csproj" />
+    <ProjectReference Include="..\Hexagon.LogReader.RepositoryImplementation\Hexagon.LogReader.RepositoryImplementation.csproj" />
+    <ProjectReference Include="..\Hexagon.LogReader.ServiceInterface\Hexagon.LogReader.ServiceInterface.csproj" />
+    <ProjectReference Include="..\Hexagon.LogReader.ServiceImplementation\Hexagon.LogReader.ServiceImplementation.csproj" />
+    <ProjectReference Include="..\Hexagon.LogReader.Entity\Hexagon.LogReader.Entity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
