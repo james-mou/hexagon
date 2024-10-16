@@ -17,7 +17,7 @@ the api used some C# 12 features, because I can, hence you need a runtime that s
 
 ./build-test-api.sh(or bat) will run all unit tests for the api
 
-The data input text file is checked in under api/Hexagon.LogReader.Host/Data/epa-http.txt, that is what the application expects to
+The data input text file is checked in under api/Hexagon.LogReader.Host/Data/epa-http.txt, that is where the application expects to
 find it, and where you would replace it. Replacing that file will require a API restart to take effect, because the content of
 that file is parsed and cached under a singlton service instance.
 
