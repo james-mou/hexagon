@@ -17,8 +17,9 @@ the api used some C# 12 features, because I can, hence you need a runtime that s
 
 ./build-test-api.sh(or bat) will run all unit tests for the api
 
-if you want to replace the test input file, overwrite epa-http.txt under Hexagon.LogReader.Host/Data/ folder,
-a restart of the API is required, because the content of this file is cached in a singleton service
+The data input text file is checked in under api/Hexagon.LogReader.Host/Data/epa-http.txt, that is what the application expects to
+find it, and where you would replace it. Replacing that file will require a API restart to take effect, because the content of
+that file is parsed and cached under a singlton service instance.
 
 # For the APP
 
@@ -34,3 +35,7 @@ All bad-looking ricidulous malformed log line patterns found in the given epa-ht
 so you won't see any problems parsing that file, if you manage to invent new error patterns in another test input txt file, sure it
 will still produce errors, the exact line number and line content that is causing the parsing exception will be displayed on the
 frontend UI.
+
+The data input text file is checked in under api/Hexagon.LogReader.Host/Data/epa-http.txt, that is what the application expects to
+find it, and where you would replace it. Replacing that file will require a API restart to take effect, because the content of
+that file is parsed and cached under a singlton service instance.
