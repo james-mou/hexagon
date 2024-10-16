@@ -23,7 +23,7 @@ that file is parsed and cached under a singlton service instance.
 
 # For the APP
 
-the command "npm" is assumed to be path and not terribly out-of-date, the code was developed on node v20.11.1 and npm 10.8.1, but it's just the frontend, not making use of any specific features provided by node, so older versions should serve it just fine.
+the command "npm" is assumed to be in the path and not terribly out-of-date, the code was developed on node v20.11.1 and npm 10.8.1, but it's just the frontend, not making use of any specific features provided by node, so older versions should serve it just fine.
 
 ./build-serve-app.sh(or bat) will serve the react frontend on http://localhost:5184
 
@@ -35,7 +35,3 @@ All bad-looking ricidulous malformed log line patterns found in the given epa-ht
 so you won't see any problems parsing that file, if you manage to invent new error patterns in another test input txt file, sure it
 will still produce errors, the exact line number and line content that is causing the parsing exception will be displayed on the
 frontend UI.
-
-The data input text file is checked in under api/Hexagon.LogReader.Host/Data/epa-http.txt, that is what the application expects to
-find it, and where you would replace it. Replacing that file will require a API restart to take effect, because the content of
-that file is parsed and cached under a singlton service instance.
