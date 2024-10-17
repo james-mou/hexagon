@@ -7,30 +7,39 @@ using Hexagon.LogReader.Utility.Exceptions;
 
 namespace Hexagon.LogReader.RepositoryImplementation;
 
-public class LogRepository(string logFilePath, TimeZoneInfo logFileZone, ILogger<LogRepository> logger) : ILogRepository
+public class LogRepository : ILogRepository
 {
-    private readonly string _logFilePath = logFilePath;
-    private readonly TimeZoneInfo _logFileTimeZone = logFileZone;
+    private readonly string _logFilePath;
+    private readonly TimeZoneInfo _logFileTimeZone;
 
-    private readonly ILogger<LogRepository> _logger = logger;
+    private readonly ILogger<LogRepository> _logger;
+
+    private readonly Func<List<LogLine>> _cachedFetchAll;
+    public LogRepository(string logFilePath, TimeZoneInfo logFileZone, ILogger<LogRepository> logger)
+    {
+        _logFilePath = logFilePath; _logFileTimeZone = logFileZone; _logger = logger;
+        List<LogLine>? cachedLogLines = null;
+
+        _cachedFetchAll = () =>
+        {
+            cachedLogLines ??= FetchAllFromDisk();
+            return cachedLogLines;
+        };
+    }
+
+
+
     private const int ESTIMATED_LOG_FILE_LINE_NUMBER = 4096;
+
 
     public List<LogLine> FlatFetchAll()
     {
-        // local variable to hold the cached value
-        List<LogLine>? cachedLogLines = null;
-
-        List<LogLine> fetchAllProxy()
-        {
-            cachedLogLines ??= FetchAllFromDisk(); // conditionally call the actual fetch
-            return cachedLogLines; // always return the cached result
-        }
-
-        return fetchAllProxy();
+        return _cachedFetchAll();
     }
 
     private List<LogLine> FetchAllFromDisk()
     {
+
         List<LogLine> logLines = new(ESTIMATED_LOG_FILE_LINE_NUMBER);
         var lines = File.ReadAllLines(_logFilePath);
 
